@@ -1,5 +1,6 @@
 package xyz.xenondevs.invui;
 
+import com.github.Anon8281.universalScheduler.scheduling.schedulers.TaskScheduler;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,6 +22,7 @@ public class InvUI implements Listener {
     
     private final List<Runnable> disableHandlers = new ArrayList<>();
     private Plugin plugin;
+    private static TaskScheduler scheduler;
     
     private InvUI() {
     }
@@ -80,6 +82,10 @@ public class InvUI implements Listener {
         if (event.getPlugin().equals(plugin)) {
             disableHandlers.forEach(Runnable::run);
         }
+    }
+
+    public static TaskScheduler getScheduler() {
+        return scheduler;
     }
     
 }

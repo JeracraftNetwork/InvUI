@@ -25,10 +25,10 @@ public class AsyncItem extends AbstractItem {
     
     public AsyncItem(@Nullable ItemProvider itemProvider, @NotNull Supplier<? extends ItemProvider> providerSupplier) {
         this.itemProvider = itemProvider == null ? new ItemWrapper(new ItemStack(Material.AIR)) : itemProvider;
-        
-        Bukkit.getScheduler().runTaskAsynchronously(InvUI.getInstance().getPlugin(), () -> {
+
+        InvUI.getScheduler().runTaskAsynchronously(() -> {
             this.itemProvider = providerSupplier.get();
-            Bukkit.getScheduler().runTask(InvUI.getInstance().getPlugin(), this::notifyWindows);
+            InvUI.getScheduler().runTask(this::notifyWindows);
         });
     }
     

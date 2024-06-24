@@ -1,5 +1,6 @@
 package xyz.xenondevs.invui.animation.impl;
 
+import com.github.Anon8281.universalScheduler.scheduling.tasks.MyScheduledTask;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
@@ -33,7 +34,7 @@ public abstract class AbstractAnimation implements Animation {
     private List<Window> windows;
     private CopyOnWriteArrayList<Integer> slots;
     private BiConsumer<Integer, Integer> show;
-    private BukkitTask task;
+    private MyScheduledTask task;
     
     private int frame;
     private int noViewerTicks;
@@ -72,7 +73,7 @@ public abstract class AbstractAnimation implements Animation {
     
     @Override
     public void start() {
-        task = Bukkit.getScheduler().runTaskTimer(InvUI.getInstance().getPlugin(), () -> {
+        task = InvUI.getScheduler().runTaskTimer(() -> {
             // if there are no viewers for more than 3 ticks, the animation can be cancelled
             if (getCurrentViewers().isEmpty()) {
                 noViewerTicks++;

@@ -1,5 +1,6 @@
 package xyz.xenondevs.invui.item.impl;
 
+import com.github.Anon8281.universalScheduler.scheduling.tasks.MyScheduledTask;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitTask;
 import xyz.xenondevs.invui.InvUI;
@@ -16,7 +17,7 @@ import java.util.function.Supplier;
 public class AutoUpdateItem extends SuppliedItem {
     
     private final int period;
-    private BukkitTask task;
+    private MyScheduledTask task;
     
     public AutoUpdateItem(int period, Supplier<? extends ItemProvider> builderSupplier) {
         super(builderSupplier, null);
@@ -25,7 +26,7 @@ public class AutoUpdateItem extends SuppliedItem {
     
     public void start() {
         if (task != null) task.cancel();
-        task = Bukkit.getScheduler().runTaskTimer(InvUI.getInstance().getPlugin(), this::notifyWindows, 0, period);
+        task = InvUI.getScheduler().runTaskTimer(this::notifyWindows, 0, period);
     }
     
     public void cancel() {

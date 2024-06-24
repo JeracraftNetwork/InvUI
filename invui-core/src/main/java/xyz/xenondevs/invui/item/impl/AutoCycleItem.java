@@ -1,5 +1,6 @@
 package xyz.xenondevs.invui.item.impl;
 
+import com.github.Anon8281.universalScheduler.scheduling.tasks.MyScheduledTask;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
@@ -19,7 +20,7 @@ public class AutoCycleItem extends AbstractItem {
     
     private final ItemProvider[] itemProviders;
     private final int period;
-    private BukkitTask task;
+    private MyScheduledTask task;
     
     private int state;
     
@@ -30,7 +31,7 @@ public class AutoCycleItem extends AbstractItem {
     
     public void start() {
         if (task != null) task.cancel();
-        task = Bukkit.getScheduler().runTaskTimer(InvUI.getInstance().getPlugin(), this::cycle, 0, period);
+        task = InvUI.getScheduler().runTaskTimer(this::cycle, 0, period);
     }
     
     public void cancel() {

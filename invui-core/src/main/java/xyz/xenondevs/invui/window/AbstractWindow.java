@@ -181,8 +181,7 @@ public abstract class AbstractWindow implements Window, GuiParent {
         }
         
         // Redraw all items after the event so there won't be any Items that aren't actually there
-        Bukkit.getScheduler().runTask(InvUI.getInstance().getPlugin(),
-            () -> event.getRawSlots().forEach(rawSlot -> {
+        InvUI.getScheduler().runTask(() -> event.getRawSlots().forEach(rawSlot -> {
                 if (getGuiAt(rawSlot) != null) redrawItem(rawSlot);
             })
         );
@@ -331,7 +330,7 @@ public abstract class AbstractWindow implements Window, GuiParent {
                 closeHandlers.forEach(Runnable::run);
             }
         } else {
-            Bukkit.getScheduler().runTaskLater(InvUI.getInstance().getPlugin(), () -> openInventory(viewer), 0);
+            InvUI.getScheduler().runTaskLater(() -> openInventory(viewer), 0);
         }
     }
     
