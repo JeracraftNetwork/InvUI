@@ -1,5 +1,6 @@
 package xyz.xenondevs.invui;
 
+import com.github.Anon8281.universalScheduler.UniversalScheduler;
 import com.github.Anon8281.universalScheduler.scheduling.schedulers.TaskScheduler;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -66,6 +67,7 @@ public class InvUI implements Listener {
             return;
         
         Bukkit.getPluginManager().registerEvents(this, plugin);
+        this.scheduler = UniversalScheduler.getScheduler(plugin);
         this.plugin = plugin;
     }
     
@@ -84,8 +86,11 @@ public class InvUI implements Listener {
         }
     }
 
-    public static TaskScheduler getScheduler() {
-        return scheduler;
+//    public static TaskScheduler getScheduler() {
+//        return scheduler;
+//    }
+    public TaskScheduler getScheduler() {
+        return this.scheduler;
     }
     
 }

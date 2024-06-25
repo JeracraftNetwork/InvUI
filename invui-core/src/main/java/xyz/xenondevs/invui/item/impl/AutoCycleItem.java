@@ -31,7 +31,7 @@ public class AutoCycleItem extends AbstractItem {
     
     public void start() {
         if (task != null) task.cancel();
-        task = InvUI.getScheduler().runTaskTimer(this::cycle, 0, period);
+        task = InvUI.getInstance().getScheduler().runTaskTimer(this::cycle, 0, period);
     }
     
     public void cancel() {
