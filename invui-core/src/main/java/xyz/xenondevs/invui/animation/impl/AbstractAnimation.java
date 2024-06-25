@@ -73,7 +73,7 @@ public abstract class AbstractAnimation implements Animation {
     
     @Override
     public void start() {
-        task = InvUI.getScheduler().runTaskTimer(() -> {
+        task = InvUI.getInstance().getScheduler().runTaskTimer(() -> {
             // if there are no viewers for more than 3 ticks, the animation can be cancelled
             if (getCurrentViewers().isEmpty()) {
                 noViewerTicks++;

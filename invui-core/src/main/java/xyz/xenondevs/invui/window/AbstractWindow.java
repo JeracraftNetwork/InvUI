@@ -181,7 +181,7 @@ public abstract class AbstractWindow implements Window, GuiParent {
         }
         
         // Redraw all items after the event so there won't be any Items that aren't actually there
-        InvUI.getScheduler().runTask(() -> event.getRawSlots().forEach(rawSlot -> {
+        InvUI.getInstance().getScheduler().runTask(() -> event.getRawSlots().forEach(rawSlot -> {
                 if (getGuiAt(rawSlot) != null) redrawItem(rawSlot);
             })
         );
@@ -330,7 +330,7 @@ public abstract class AbstractWindow implements Window, GuiParent {
                 closeHandlers.forEach(Runnable::run);
             }
         } else {
-            InvUI.getScheduler().runTaskLater(() -> openInventory(viewer), 0);
+            InvUI.getInstance().getScheduler().runTaskLater(() -> openInventory(viewer), 0);
         }
     }
     

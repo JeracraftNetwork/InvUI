@@ -26,9 +26,9 @@ public class AsyncItem extends AbstractItem {
     public AsyncItem(@Nullable ItemProvider itemProvider, @NotNull Supplier<? extends ItemProvider> providerSupplier) {
         this.itemProvider = itemProvider == null ? new ItemWrapper(new ItemStack(Material.AIR)) : itemProvider;
 
-        InvUI.getScheduler().runTaskAsynchronously(() -> {
+        InvUI.getInstance().getScheduler().runTaskAsynchronously(() -> {
             this.itemProvider = providerSupplier.get();
-            InvUI.getScheduler().runTask(this::notifyWindows);
+            InvUI.getInstance().getScheduler().runTask(this::notifyWindows);
         });
     }
     

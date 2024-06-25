@@ -26,7 +26,7 @@ public class AutoUpdateItem extends SuppliedItem {
     
     public void start() {
         if (task != null) task.cancel();
-        task = InvUI.getScheduler().runTaskTimer(this::notifyWindows, 0, period);
+        task = InvUI.getInstance().getScheduler().runTaskTimer(this::notifyWindows, 0, period);
     }
     
     public void cancel() {
